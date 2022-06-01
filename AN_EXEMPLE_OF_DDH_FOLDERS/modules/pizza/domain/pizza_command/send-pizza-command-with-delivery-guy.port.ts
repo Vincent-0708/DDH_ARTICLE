@@ -1,4 +1,4 @@
-import { Address } from "../../../clients/domain/value-objects/address.value-object";
+import { Address } from "../../../client/domain/value-objects/address.value-object";
 import { PizzaEntity } from "../create_pizza/entities/pizza.entity";
 
 
@@ -7,15 +7,15 @@ type DeliveryGuyMessages = {
     IDeliveredTheCommand:boolean;
 }
 
-export interface SendPizzaCommandWithDeliveryGuyPort {
+export abstract class SendPizzaCommandWithDeliveryGuyPort {
 
-    writeDownDeliveryAddress(
+    abstract writeDownDeliveryAddress(
     deliveryAddress: Address
     ) : Promise<DeliveryGuyMessages["IKnowTheDeliveryAddress"]>;
 
-    takePizzas(pizzas:PizzaEntity[]):void
+    abstract takePizzas(pizzas:PizzaEntity[]):void
 
-    moveFromPizzeriaToDeliveryAddress() : Promise<DeliveryGuyMessages["IDeliveredTheCommand"]>;
+    abstract moveFromPizzeriaToDeliveryAddress() : Promise<DeliveryGuyMessages["IDeliveredTheCommand"]>;
 
 }
 
