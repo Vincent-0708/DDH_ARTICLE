@@ -45,7 +45,11 @@ export class ClientEntity {
     }
 
     public static generateAlreadyExistingClient(clientProps:ClientEntityAttributes): ClientEntity{
-        return new ClientEntity( {...clientProps} );
+        if (!ClientEntity.validate(clientProps)){
+            throw new Error(`Supposed already existing client possess invalid data : ${clientProps}`)       
+        } else {
+            return new ClientEntity( {...clientProps} );
+        }
     }
 
     protected static validate(clientProps:Partial<ClientEntityAttributes>):boolean{
