@@ -2,7 +2,7 @@ import { Inject } from "@nestjs/common";
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
 import { ClientPort } from "./client.port";
 import { ClientEntity } from "./entities/client.entity";
-import { GetClientInformationByIdQuery, GetClientInformationByIdQueryResult } from "./get-client-information.query";
+import { GetClientInformationByIdQuery, GetClientInformationByIdQueryResult } from "./get-client-information-by-id.query";
 
 @QueryHandler(GetClientInformationByIdQuery)
 export class GetClientInformationByIdQueryHandler implements IQueryHandler<GetClientInformationByIdQuery,GetClientInformationByIdQueryResult>{

@@ -5,7 +5,7 @@ import { SendPizzaCommandWithDeliveryGuyPort } from "./send-pizza-command-with-d
 import { PizzaEntity } from "../create_pizza/entities/pizza.entity";
 import { ClientAddressNotUnderstood, DeliveryGuyLost } from "../../errors/pizza-command-delivery.error";
 import Result from "../../../../libs/result/result";
-import { GetClientInformationPresenter } from "../../../clients/interface/get-client-information.presenter";
+import { GetClientInformationPresenter } from "../../../client/interface/get-client-information.presenter";
 import { PizzaCommandSentEvent } from "./events/pizza-command-sent.event";
 import { getScheduledDeliveryDate } from "../../../../libs/utils/get-scheduled-delivery-date";
 

@@ -1,5 +1,5 @@
 import { CommandBus, EventsHandler, IEventHandler } from "@nestjs/cqrs";
-import { GetClientInformationPresenter } from "../../clients/interface/get-client-information.presenter";
+import { GetClientInformationPresenter } from "../../client/interface/get-client-information.presenter";
 import { PizzaCommandSentEvent } from "../../pizza/domain/pizza_command/events/pizza-command-sent.event";
 import { 
     SendMessageToClientCommand,

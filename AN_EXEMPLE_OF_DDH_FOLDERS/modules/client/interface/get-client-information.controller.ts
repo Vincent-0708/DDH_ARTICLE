@@ -4,7 +4,7 @@ import { ClientEntity } from "../domain/entities/client.entity";
 import { 
    GetClientInformationByIdQuery,
    GetClientInformationByIdQueryResult 
-} from "../domain/get-client-information.query";
+} from "../domain/get-client-information-by-id.query";
 import { CLIENT_CONTROLLER_URLS } from "../../../params/urls/client-controller-urls";
 import { GetClientInformationResponseDto } from "./dtos/get-client-information.response.dto";
 
