@@ -16,10 +16,11 @@ export class GetClientInformationController {
    public async getClientInformation(@Body() clientId:ClientEntity["id"]){
       const {clientInformation} = await this.queryBus.execute<
       GetClientInformationByIdQuery,GetClientInformationByIdQueryResult>({payload:{clientId}});
-      if(clientInformation){
-         return new GetClientInformationResponseDto(clientInformation);
+      if(clientInformation.isErr()){
+         return(HttpStatus.BAD_REQUEST);
       }
-      return(HttpStatus.BAD_REQUEST);
+      return new GetClientInformationResponseDto(clientInformation.getValue());
+      
    }
 }
 

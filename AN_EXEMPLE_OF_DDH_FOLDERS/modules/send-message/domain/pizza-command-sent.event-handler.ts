@@ -17,7 +17,7 @@ export class PizzaCommandSentEventHandler implements IEventHandler<PizzaCommandS
     async handle({payload}:PizzaCommandSentEvent) : Promise<void> {
         const {clientId, plannedDeliveryDate} = payload;
         const clientPhoneNumber = 
-        this.getClientInformationPresenter.getClientPhoneNumberAsString(clientId)
+        await this.getClientInformationPresenter.getClientPhoneNumberAsString(clientId)
         const message = `Your pizzas are supposed to be delivered at : ${plannedDeliveryDate}`
 
         await this.commandBus.execute<SendMessageToClientCommand,SendMessageToClientCommandResult>(

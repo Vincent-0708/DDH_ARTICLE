@@ -1,17 +1,39 @@
 import { Injectable } from "@nestjs/common";
+import { QueryBus } from "@nestjs/cqrs";
 import { ClientEntity } from "../domain/entities/client.entity";
+import { GetClientInformationByIdQuery, GetClientInformationByIdQueryResult } from "../domain/get-client-information-by-id.query";
 import { Address } from "../domain/value-objects/address.value-object";
+import { GetClientPhoneNumberAsStringResponseDto } from "./dtos/get-client-phone-number-as-string.response.dto";
 
 @Injectable()
 export class GetClientInformationPresenter {
-    public getClientAddress(_clientId:ClientEntity["id"]): Address{
-        //logic to call query needed to get this information
-        return new Address
+    constructor(private queryBus:QueryBus){}
+
+    public async getClientAddress(clientId:ClientEntity["id"]): Promise<Address>{
+        const {clientInformation} = await this.queryBus.execute<
+      GetClientInformationByIdQuery,GetClientInformationByIdQueryResult>({payload:{clientId}});
+        if(clientInformation.isErr()){
+          throw new Error("client called for in getClientAddress with id :${clientId} does not exist ");
+           
+        }
+        const clientEntity = clientInformation.getValue() 
+        const clientAddressInformation =  clientEntity.getAddress()
+        return new Address(
+            clientAddressInformation.postalCode,
+            clientAddressInformation.street,
+            clientAddressInformation.streetNumber
+        );
+        
     }
 
-    public getClientPhoneNumberAsString(_clientId:ClientEntity["id"]) : string{
-        //logic to call query needed to get this information and to give it back
-        //as a string thanks to dto mapping
-        return("phoneNumber)");
+    public async getClientPhoneNumberAsString(clientId:ClientEntity["id"]) : Promise<string> {
+        const {clientInformation} = await this.queryBus.execute<
+        GetClientInformationByIdQuery,GetClientInformationByIdQueryResult>({payload:{clientId}});
+          if(clientInformation.isErr()){
+            throw new Error("client called for in getClientPhoneNumberAsString with id :${clientId} does not exist ");
+          }
+          const phoneNumberResponseDto = new GetClientPhoneNumberAsStringResponseDto(clientInformation.getValue())
+          return phoneNumberResponseDto.phoneNumber 
+          
     }
 }

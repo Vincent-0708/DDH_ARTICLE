@@ -27,7 +27,7 @@ export class SendPizzaCommandHandler implements ICommandHandler<SendPizzaCommand
     const { pizzaCommand, pizzasToSend } = payload;
 
     const clientId = pizzaCommand.getClientId()
-    const address = this.getClientInformationPresenter.getClientAddress(clientId);
+    const address = await this.getClientInformationPresenter.getClientAddress(clientId);
 
     const doesTheDeliveryGuyUnderstandTheAddress = 
     await this.sendPizzaCommandWithDeliveryGuyPort.writeDownDeliveryAddress(address)

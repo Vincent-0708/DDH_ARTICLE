@@ -1,6 +1,8 @@
 import { Inject } from "@nestjs/common";
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
+import Result from "../../../libs/result/result";
 import { isDataFromUserClean } from "../../../libs/utils/is-data-from-user-clean";
+import { ClientRequestIsNotValid } from "../errors/client.errors";
 import { ClientPort } from "./client.port";
 import { ClientEntity } from "./entities/client.entity";
 import { GetClientInformationByIdQuery, GetClientInformationByIdQueryResult } from "./get-client-information-by-id.query";
@@ -19,9 +21,9 @@ GetClientInformationByIdQueryResult
         const {clientId} = query.payload
         if(isDataFromUserClean(clientId)){
             const clientEntity = await this.ClientEntityPort.getClientInformationById(clientId)
-            return {clientInformation:clientEntity};
+            return {clientInformation: Result.ok(clientEntity)};
         }
-        return({clientInformation:null});
+        return({clientInformation:Result.err(new ClientRequestIsNotValid())});
         
     }
 }

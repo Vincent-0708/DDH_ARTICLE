@@ -16,3 +16,12 @@ export class ClientDoesNotExist extends Error{
         super(ClientDataAreNotValid.message);
     }
 }
+
+export class ClientRequestIsNotValid extends Error{
+    static readonly message = "client request is not valid ";
+    public readonly code = "CLIENT_REQUEST_NOT_VALID"
+
+    constructor(){
+        super(ClientRequestIsNotValid.message);
+    }
+}

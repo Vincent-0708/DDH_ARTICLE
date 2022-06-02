@@ -1,4 +1,6 @@
 import { IQuery, IQueryResult } from "@nestjs/cqrs";
+import Result from "../../../libs/result/result";
+import { ClientRequestIsNotValid } from "../errors/client.errors";
 import { ClientEntity } from "./entities/client.entity";
 
 export class GetClientInformationByIdQuery implements IQuery{
@@ -6,5 +8,5 @@ export class GetClientInformationByIdQuery implements IQuery{
 }
 
 export class GetClientInformationByIdQueryResult implements IQueryResult{
-    constructor(public readonly clientInformation:ClientEntity | null){}
+    constructor(public readonly clientInformation:Result<ClientEntity,ClientRequestIsNotValid>){}
 }
