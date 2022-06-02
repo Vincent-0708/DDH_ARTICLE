@@ -16,7 +16,7 @@ export class PizzaCommandAggregate {
     protected content: PizzaCommandAggregateAttributes["content"];
     protected price: PizzaCommandAggregateAttributes["price"];
 
-    private constructor(pizzaCommand:PizzaCommandAggregateAttributes){
+    private constructor(pizzaCommand:Omit<PizzaCommandAggregateAttributes,"price">){
         this.clientId = pizzaCommand.clientId;
         this.content = pizzaCommand.content;
     }
@@ -31,9 +31,15 @@ export class PizzaCommandAggregate {
         }
     }
 
-    protected static validate(pizzaCommand:Partial<PizzaCommandAggregateAttributes>):boolean{
-        //validation rules to respect domain invariants 
-        return(!!pizzaCommand);
+    protected static validate(pizzaCommand:Omit<PizzaCommandAggregateAttributes,"price">):boolean{
+        if(!pizzaCommand.clientId){
+            return false
+        }
+        if(!pizzaCommand.content|| pizzaCommand.content.length === 0){
+            return(false);
+        }
+        // other validation rules to respect domain invariants 
+        return(true);
     }
 
     protected calculatePizzaCommandPrice():void{
