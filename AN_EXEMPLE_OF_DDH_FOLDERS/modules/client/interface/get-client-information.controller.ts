@@ -1,4 +1,4 @@
-import { Body, Controller, Get } from "@nestjs/common";
+import { Body, Controller, Get, HttpStatus } from "@nestjs/common";
 import { QueryBus } from "@nestjs/cqrs";
 import { ClientEntity } from "../domain/entities/client.entity";
 import { 
@@ -16,8 +16,10 @@ export class GetClientInformationController {
    public async getClientInformation(@Body() clientId:ClientEntity["id"]){
       const {clientInformation} = await this.queryBus.execute<
       GetClientInformationByIdQuery,GetClientInformationByIdQueryResult>({payload:{clientId}});
-      return new GetClientInformationResponseDto(clientInformation);
-
+      if(clientInformation){
+         return new GetClientInformationResponseDto(clientInformation);
+      }
+      return(HttpStatus.BAD_REQUEST);
    }
 }
 

@@ -6,5 +6,5 @@ export class GetClientInformationByIdQuery implements IQuery{
 }
 
 export class GetClientInformationByIdQueryResult implements IQueryResult{
-    constructor(public readonly clientInformation:ClientEntity){}
+    constructor(public readonly clientInformation:ClientEntity | null){}
 }
