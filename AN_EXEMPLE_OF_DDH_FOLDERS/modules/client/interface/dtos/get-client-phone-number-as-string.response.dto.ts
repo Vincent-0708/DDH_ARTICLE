@@ -4,8 +4,7 @@ export class GetClientPhoneNumberAsStringResponseDto{
     public phoneNumber:string
 
     constructor(clientEntity:ClientEntity){
-        const clientEntityValues = clientEntity.getValues()
-        this.phoneNumber = clientEntityValues.phoneNumber
+        this.phoneNumber = clientEntity.getPhoneNumber();
     }
     
 }

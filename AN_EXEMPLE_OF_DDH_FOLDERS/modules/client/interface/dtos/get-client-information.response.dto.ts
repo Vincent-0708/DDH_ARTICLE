@@ -6,10 +6,10 @@ export class GetClientInformationResponseDto{
     public firstName:string
 
     constructor(clientEntity:ClientEntity){
-        const clientEntityValues = clientEntity.getValues()
-        this.address =this.getAddressFromClientEntityAddress(clientEntityValues.address)
-        this.firstName = clientEntityValues.phoneNumber
-        this.phoneNumber = clientEntityValues.phoneNumber
+        const clientAddress = clientEntity.getAddress()
+        this.address =this.getAddressFromClientEntityAddress(clientAddress);
+        this.firstName = clientEntity.getFirstName();
+        this.phoneNumber = clientEntity.getPhoneNumber();
     }
 
     private getAddressFromClientEntityAddress(address:ClientEntity["address"]):string{

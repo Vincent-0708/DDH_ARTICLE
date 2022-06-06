@@ -19,14 +19,14 @@ export class ClientOrmEntityClientEntityMapper {
     }
 
     public toOrmEntity(clientEntity:ClientEntity):ClientOrmEntity{
-        const clientAttributes = clientEntity.getValues();
+        const clientAddress = clientEntity.getAddress()
         const clientOrmEntityProps = {
-            id:clientAttributes.id,
-            phoneNumber: clientAttributes.phoneNumber,
-            firstName:clientAttributes.firstName,
-            postalCode:clientAttributes.address.postalCode,
-            street:clientAttributes.address.street,
-            streetNumber:clientAttributes.address.streetNumber
+            id:clientEntity.getId(),
+            phoneNumber: clientEntity.getPhoneNumber(),
+            firstName:clientEntity.getFirstName(),
+            postalCode:clientAddress.postalCode,
+            street: clientAddress.street,
+            streetNumber:clientAddress.streetNumber
         };
         return(new ClientOrmEntity(clientOrmEntityProps)); 
     }

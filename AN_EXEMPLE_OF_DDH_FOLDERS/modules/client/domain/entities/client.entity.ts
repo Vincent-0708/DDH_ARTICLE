@@ -5,18 +5,17 @@ import { ClientDataAreNotValid } from "../../errors/client.errors";
 import { Address } from "../value-objects/address.value-object";
 import { PhoneNumber } from "../value-objects/phone-number.value-object";
 
-type getValuesReturnType = {
-    id:string;
-    firstName:string;
-    phoneNumber:string;
-    address: {postalCode:string, street:string, streetNumber:string }
-}
-
 export type ClientEntityAttributes = {
     id: string
     firstName : string;
     phoneNumber : PhoneNumber;
     address : Address; 
+}
+
+type getAddressReturnType = {
+    postalCode:string;
+    street:string;
+    streetNumber:string 
 }
 
 @Injectable()
@@ -57,21 +56,30 @@ export class ClientEntity {
         return(!!clientProps);
     }
 
-    public getValues() : getValuesReturnType {
-        const id = this.id.toString();
-        const firstName = this.firstName.toString();
-        const phoneNumber = this.phoneNumber.toString();
-        const address = {
+    public addFidelityPoint():void {
+        //logic to add a fidelity point to a client
+    }
+
+    public getAddress() : getAddressReturnType {
+        return {
             postalCode:this.address.postalCode.toString(),
             street : this.address.street.toString(),
             streetNumber:this.address.streetNumber.toString()
         }
-        return {id, firstName, phoneNumber, address}
     }
 
-    public addFidelityPoint():void {
-        //logic to add a fidelity point to a client
+    public getPhoneNumber() : string {
+        return this.phoneNumber.toString();
     }
+
+    public getFirstName():string {
+        return this.firstName.toString();
+    }
+
+    public getId():string {
+        return this.id.toString();
+    }
+
 
 }
 
