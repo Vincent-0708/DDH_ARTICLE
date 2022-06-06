@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 export type ClientOrmEntityAttributes = {
   id:string;
@@ -9,32 +9,32 @@ export type ClientOrmEntityAttributes = {
   streetNumber:string
 }
 
-@Entity('client')
+@Entity( "client" )
 export class ClientOrmEntity{
 
-  constructor(props?:unknown){
-    if(props){
-      Object.assign(this,props);
+    constructor( props?:unknown ){
+        if ( props ){
+            Object.assign( this, props );
+        }
     }
-  }
   
   @PrimaryGeneratedColumn()
-  id: string
+      id: string;
 
   @Column()
-  firstName: string;
+      firstName: string;
 
-  @Column({ unique: true })
-  phoneNumber: string;
-
-  @Column()
-  postalCode: string;
+  @Column( { unique: true } )
+      phoneNumber: string;
 
   @Column()
-  street: string;
+      postalCode: string;
 
   @Column()
-  streetNumber: string;
+      street: string;
+
+  @Column()
+      streetNumber: string;
 
 }
 

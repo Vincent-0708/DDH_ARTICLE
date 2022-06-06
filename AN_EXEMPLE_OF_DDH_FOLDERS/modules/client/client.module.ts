@@ -1,24 +1,18 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { GetClientInformationByIdQuery } from "./domain/get-client-information-by-id.query";
+import { GetClientInformationByIdQuery }
+    from "./domain/get-client-information-by-id.query";
 import { ClientRepository } from "./infrastructure/client.repository";
-import { GetClientInformationPresenter } from "./interface/get-client-information.presenter";
+import { GetClientInformationPresenter }
+    from "./interface/get-client-information.presenter";
 
-const QueryHandlers = [GetClientInformationByIdQuery];
+const QueryHandlers = [ GetClientInformationByIdQuery ];
 
-const ClientPresenters = [GetClientInformationPresenter];
+const ClientPresenters = [ GetClientInformationPresenter ];
 
-@Module({
-  imports: [
-    TypeOrmModule.forFeature([
-        ClientRepository
-    ]),
-  ],
-  providers: [
-    ...QueryHandlers,
-  ],
-  exports: [
-    ...ClientPresenters
-  ],
-})
+@Module( {
+    imports: [ TypeOrmModule.forFeature( [ ClientRepository ] ), ],
+    providers: [ ...QueryHandlers, ],
+    exports: [ ...ClientPresenters ],
+} )
 export class ClientModule {}

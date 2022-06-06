@@ -9,46 +9,51 @@ import { GetClientInformationPresenter } from "../../../client/interface/get-cli
 import { PizzaCommandSentEvent } from "./events/pizza-command-sent.event";
 import { getScheduledDeliveryDate } from "../../../../libs/utils/get-scheduled-delivery-date";
 
-@CommandHandler(SendPizzaCommand)
+@CommandHandler( SendPizzaCommand )
 export class SendPizzaCommandHandler implements ICommandHandler<SendPizzaCommand> {
   
-  constructor(
-    @Inject(PizzaEntity)
-    private readonly sendPizzaCommandWithDeliveryGuyPort: Pick<SendPizzaCommandWithDeliveryGuyPort,
+    constructor(
+    @Inject( PizzaEntity )
+    private readonly sendPizzaCommandWithDeliveryGuyPort:
+    Pick<SendPizzaCommandWithDeliveryGuyPort,
      "writeDownDeliveryAddress"
      | "moveFromPizzeriaToDeliveryAddress"
      | "takePizzas">,
-     @Inject(GetClientInformationPresenter)
+     @Inject( GetClientInformationPresenter )
     private getClientInformationPresenter : GetClientInformationPresenter,
     private eventBus:EventBus,
-  ) {}
+    ) {}
 
-  public async execute({ payload }: SendPizzaCommand): Promise<SendPizzaCommandResult> {
-    const { pizzaCommand, pizzasToSend } = payload;
+    public async execute( { payload }: SendPizzaCommand ):
+     Promise<SendPizzaCommandResult> 
+    {
+        const { pizzaCommand, pizzasToSend } = payload;
 
-    const clientId = pizzaCommand.getClientId()
-    const address = await this.getClientInformationPresenter.getClientAddress(clientId);
+        const clientId = pizzaCommand.getClientId();
 
-    const doesTheDeliveryGuyUnderstandTheAddress = 
-    await this.sendPizzaCommandWithDeliveryGuyPort.writeDownDeliveryAddress(address)
+        const address = 
+        await this.getClientInformationPresenter.getClientAddress( clientId );
 
-    if (!doesTheDeliveryGuyUnderstandTheAddress) {
-        const errorWithAddress = new ClientAddressNotUnderstood()
-        return Result.err(errorWithAddress);
-    }
+        const doesTheDeliveryGuyUnderstandTheAddress = 
+        await this.sendPizzaCommandWithDeliveryGuyPort.writeDownDeliveryAddress( address );
 
-    this.sendPizzaCommandWithDeliveryGuyPort.takePizzas(pizzasToSend);
+        if ( !doesTheDeliveryGuyUnderstandTheAddress ) {
+            const errorWithAddress = new ClientAddressNotUnderstood();
+            return Result.err( errorWithAddress );
+        }
 
-    const plannedDeliveryDate = getScheduledDeliveryDate()
-    this.eventBus.publish(new PizzaCommandSentEvent({clientId,plannedDeliveryDate}))
+        this.sendPizzaCommandWithDeliveryGuyPort.takePizzas( pizzasToSend );
 
-    const doesTheDeliveryGuyReachedTheAddress = 
+        const plannedDeliveryDate = getScheduledDeliveryDate();
+        this.eventBus.publish( new PizzaCommandSentEvent( { clientId, plannedDeliveryDate } ) );
+
+        const doesTheDeliveryGuyReachedTheAddress = 
     await this.sendPizzaCommandWithDeliveryGuyPort.moveFromPizzeriaToDeliveryAddress();
-    if(!doesTheDeliveryGuyReachedTheAddress){
-        const errorWithDelivery = new DeliveryGuyLost();
-        return Result.err(errorWithDelivery);
-    }
-    return Result.ok();
+        if ( !doesTheDeliveryGuyReachedTheAddress ){
+            const errorWithDelivery = new DeliveryGuyLost();
+            return Result.err( errorWithDelivery );
+        }
+        return Result.ok();
 
-  }
-};
+    }
+}

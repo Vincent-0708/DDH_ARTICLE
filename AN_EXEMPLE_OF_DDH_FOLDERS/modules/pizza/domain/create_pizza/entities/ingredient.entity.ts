@@ -13,25 +13,28 @@ export class IngredientEntity {
     protected id: IngredientEntityAttributes["id"];
     protected name : IngredientEntityAttributes["name"];
 
-    private constructor(ingredient: IngredientEntityAttributes){
+    private constructor( ingredient: IngredientEntityAttributes ){
         this.id = ingredient.id;
         this.name = ingredient.name;
     }
 
-    public static createIngredient(ingredientProps:Omit<IngredientEntityAttributes,"id">):
-    Result<IngredientEntity,IngredientDataAreNotValid>
+    public static createIngredient( 
+        ingredientProps:Omit<IngredientEntityAttributes, "id"> ):
+    Result<IngredientEntity, IngredientDataAreNotValid>
     {        
-        if (!IngredientEntity.validate(ingredientProps)){
-            return Result.err(new IngredientDataAreNotValid());
+        if ( !IngredientEntity.validate( ingredientProps ) ){
+            return Result.err( new IngredientDataAreNotValid() );
         } else {
-            const id = generateId()
-            return Result.ok(new IngredientEntity({id,...ingredientProps}));
+            const id = generateId();
+            return Result.ok( new IngredientEntity( { id, ...ingredientProps } ) );
         }
     }
 
-    protected static validate(ingredientProps:Partial<IngredientEntityAttributes>):boolean{
+    protected static validate( 
+        ingredientProps:Partial<IngredientEntityAttributes> ):boolean
+    {
         //validation rules to respect domain invariants 
-        return(!!ingredientProps);
+        return ( !!ingredientProps );
     }
 
     public getName():IngredientEntityAttributes["name"]{

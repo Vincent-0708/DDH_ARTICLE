@@ -16,30 +16,32 @@ export class PizzaCommandAggregate {
     protected content: PizzaCommandAggregateAttributes["content"];
     protected price: PizzaCommandAggregateAttributes["price"];
 
-    private constructor(pizzaCommand:Omit<PizzaCommandAggregateAttributes,"price">){
+    private constructor( pizzaCommand:Omit<PizzaCommandAggregateAttributes, "price"> ){
         this.clientId = pizzaCommand.clientId;
         this.content = pizzaCommand.content;
     }
 
-    public static createPizzaCommand(pizzaCommand:PizzaCommandAggregateAttributes) : 
-    Result<PizzaCommandAggregate,PizzaCommandDataAreNotValid>
+    public static createPizzaCommand( pizzaCommand:PizzaCommandAggregateAttributes ) : 
+    Result<PizzaCommandAggregate, PizzaCommandDataAreNotValid>
     {
-        if (!PizzaCommandAggregate.validate(pizzaCommand)){
-            return Result.err(new PizzaCommandDataAreNotValid());
+        if ( !PizzaCommandAggregate.validate( pizzaCommand ) ){
+            return Result.err( new PizzaCommandDataAreNotValid() );
         } else {
-            return Result.ok(new PizzaCommandAggregate( {...pizzaCommand} ));
+            return Result.ok( new PizzaCommandAggregate( { ...pizzaCommand } ) );
         }
     }
 
-    protected static validate(pizzaCommand:Omit<PizzaCommandAggregateAttributes,"price">):boolean{
-        if(!pizzaCommand.clientId){
-            return false
+    protected static validate(
+        pizzaCommand:Omit<PizzaCommandAggregateAttributes, "price"> ):boolean
+    {
+        if ( !pizzaCommand.clientId ){
+            return false;
         }
-        if(!pizzaCommand.content|| pizzaCommand.content.length === 0){
-            return(false);
+        if ( !pizzaCommand.content || pizzaCommand.content.length === 0 ){
+            return ( false );
         }
         // other validation rules to respect domain invariants 
-        return(true);
+        return ( true );
     }
 
     protected calculatePizzaCommandPrice():void{
@@ -48,7 +50,7 @@ export class PizzaCommandAggregate {
         this.price = commandPrice; 
     }
 
-    public addPizzaToContent(_pizza:PizzaEntity):void{
+    public addPizzaToContent( _pizza:PizzaEntity ):void{
         // logic to add a pizza to the pizza attribute AND to update the price 
     }
 

@@ -13,11 +13,11 @@ export abstract class SendPizzaCommandWithDeliveryGuyPort {
     deliveryAddress: Address
     ) : Promise<DeliveryGuyMessages["IKnowTheDeliveryAddress"]>;
 
-    abstract takePizzas(pizzas:PizzaEntity[]):void
+    abstract takePizzas( pizzas:PizzaEntity[] ):void
 
-    abstract moveFromPizzeriaToDeliveryAddress() : Promise<DeliveryGuyMessages["IDeliveredTheCommand"]>;
+    abstract moveFromPizzeriaToDeliveryAddress() 
+    : Promise<DeliveryGuyMessages["IDeliveredTheCommand"]>;
 
 }
-
 
 

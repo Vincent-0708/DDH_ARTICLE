@@ -5,8 +5,8 @@ import { CanNotSendMessage } from "../errors/sent-message.error";
 
 type SendMessageToClientCommandPayload = { clientPhoneNumber: string, message:string};
 
-export type SendMessageToClientCommandResult = Result<void , CanNotSendMessage>;
+export type SendMessageToClientCommandResult = Result<void, CanNotSendMessage>;
 
 export class SendMessageToClientCommand implements ICommand {
-  constructor(public readonly payload: SendMessageToClientCommandPayload) {}
+    constructor( public readonly payload: SendMessageToClientCommandPayload ) {}
 }

@@ -25,35 +25,39 @@ export class ClientEntity {
     protected phoneNumber: ClientEntityAttributes["phoneNumber"];
     protected address : ClientEntityAttributes["address"];
 
-    private constructor(client:ClientEntityAttributes){
+    private constructor( client:ClientEntityAttributes ){
         this.id = client.id;
         this.firstName = client.firstName;
         this.phoneNumber = client.phoneNumber;
         this.address = client.address;
     }
 
-    public static createClient(clientProps:Omit<ClientEntityAttributes,"id">): 
+    public static createClient( clientProps:Omit<ClientEntityAttributes, "id"> ): 
     Result<ClientEntity, ClientDataAreNotValid> 
     {
-        if (!ClientEntity.validate(clientProps)){
-            return Result.err(new ClientDataAreNotValid());
+        if ( !ClientEntity.validate( clientProps ) ){
+            return Result.err( new ClientDataAreNotValid() );
         } else {
-            const id = generateId()
-            return Result.ok(new ClientEntity( {id, ...clientProps} ));
+            const id = generateId();
+            return Result.ok( new ClientEntity( { id, ...clientProps } ) );
         }
     }
 
-    public static generateAlreadyExistingClient(clientProps:ClientEntityAttributes): ClientEntity{
-        if (!ClientEntity.validate(clientProps)){
-            throw new Error(`Supposed already existing client possess invalid data : ${clientProps}`)       
+    public static generateAlreadyExistingClient(
+        clientProps: ClientEntityAttributes ): ClientEntity{
+        if ( !ClientEntity.validate( clientProps ) ){
+            throw new Error(
+                `Supposed already existing client 
+                possess invalid data : ${clientProps}` );       
         } else {
-            return new ClientEntity( {...clientProps} );
+            return new ClientEntity( { ...clientProps } );
         }
     }
 
-    protected static validate(clientProps:Partial<ClientEntityAttributes>):boolean{
+    protected static validate(
+        clientProps: Partial<ClientEntityAttributes> ):boolean{
         //validation rules to respect domain invariants 
-        return(!!clientProps);
+        return ( !!clientProps );
     }
 
     public addFidelityPoint():void {
@@ -62,10 +66,10 @@ export class ClientEntity {
 
     public getAddress() : getAddressReturnType {
         return {
-            postalCode:this.address.postalCode.toString(),
-            street : this.address.street.toString(),
-            streetNumber:this.address.streetNumber.toString()
-        }
+            postalCode: this.address.postalCode.toString(),
+            street: this.address.street.toString(),
+            streetNumber: this.address.streetNumber.toString()
+        };
     }
 
     public getPhoneNumber() : string {
