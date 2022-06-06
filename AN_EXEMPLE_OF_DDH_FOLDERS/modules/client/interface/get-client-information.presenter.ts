@@ -10,13 +10,13 @@ export class GetClientInformationPresenter {
     constructor(private queryBus:QueryBus){}
 
     public async getClientAddress(clientId:ClientEntity["id"]): Promise<Address>{
-        const {clientInformation} = await this.queryBus.execute<
+        const {clientInformation:clientInformationResult} = await this.queryBus.execute<
       GetClientInformationByIdQuery,GetClientInformationByIdQueryResult>({payload:{clientId}});
-        if(clientInformation.isErr()){
+        if(clientInformationResult.isErr()){
           throw new Error("client called for in getClientAddress with id :${clientId} does not exist ");
            
         }
-        const clientEntity = clientInformation.getValue() 
+        const clientEntity = clientInformationResult.getValue() 
         const clientAddressInformation =  clientEntity.getAddress()
         return new Address(
             clientAddressInformation.postalCode,
@@ -27,12 +27,12 @@ export class GetClientInformationPresenter {
     }
 
     public async getClientPhoneNumberAsString(clientId:ClientEntity["id"]) : Promise<string> {
-        const {clientInformation} = await this.queryBus.execute<
+        const {clientInformation:clientInformationResult} = await this.queryBus.execute<
         GetClientInformationByIdQuery,GetClientInformationByIdQueryResult>({payload:{clientId}});
-          if(clientInformation.isErr()){
+          if(clientInformationResult.isErr()){
             throw new Error("client called for in getClientPhoneNumberAsString with id :${clientId} does not exist ");
           }
-          const phoneNumberResponseDto = new GetClientPhoneNumberAsStringResponseDto(clientInformation.getValue())
+          const phoneNumberResponseDto = new GetClientPhoneNumberAsStringResponseDto(clientInformationResult.getValue())
           return phoneNumberResponseDto.phoneNumber 
           
     }
