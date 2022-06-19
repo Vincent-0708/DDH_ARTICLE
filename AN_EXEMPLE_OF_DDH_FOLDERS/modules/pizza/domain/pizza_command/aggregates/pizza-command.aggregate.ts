@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import Result from "../../../../../libs/result/result";
-import { PizzaCommandDataAreNotValid } from "../../../errors/pizza-command.error";
+import { PizzaCommandDataAreNotValid } from "../../errors/pizza-command.error";
 import { PizzaEntity } from "../../create_pizza/entities/pizza.entity";
 import { PizzaCommandPrice } from "../value-objects/pizza-command-price.value-object";
 

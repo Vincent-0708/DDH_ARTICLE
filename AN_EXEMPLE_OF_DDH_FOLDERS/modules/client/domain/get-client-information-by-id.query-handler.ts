@@ -2,7 +2,7 @@ import { Inject } from "@nestjs/common";
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
 import Result from "../../../libs/result/result";
 import { isDataFromUserClean } from "../../../libs/utils/is-data-from-user-clean";
-import { ClientRequestIsNotValid } from "../errors/client.errors";
+import { ClientRequestIsNotValid } from "./errors/client.errors";
 import { ClientPort } from "./client.port";
 import { ClientEntity } from "./entities/client.entity";
 import { GetClientInformationByIdQuery, GetClientInformationByIdQueryResult } 

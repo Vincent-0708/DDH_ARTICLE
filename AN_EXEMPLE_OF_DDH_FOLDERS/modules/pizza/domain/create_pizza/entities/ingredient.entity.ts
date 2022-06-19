@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import Result from "../../../../../libs/result/result";
 import { generateId } from "../../../../../libs/utils/generate-random-string-id";
-import { IngredientDataAreNotValid } from "../../../errors/ingredient.error";
+import { IngredientDataAreNotValid } from "../../errors/ingredient.error";
 
 export type IngredientEntityAttributes = {
     id: string

@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import Result from "../../../../libs/result/result";
 import { generateId } from "../../../../libs/utils/generate-random-string-id";
-import { ClientDataAreNotValid } from "../../errors/client.errors";
+import { ClientDataAreNotValid } from "../errors/client.errors";
 import { Address } from "../value-objects/address.value-object";
 import { PhoneNumber } from "../value-objects/phone-number.value-object";
 
@@ -83,7 +83,6 @@ export class ClientEntity {
     public getId():string {
         return this.id.toString();
     }
-
 
 }
 

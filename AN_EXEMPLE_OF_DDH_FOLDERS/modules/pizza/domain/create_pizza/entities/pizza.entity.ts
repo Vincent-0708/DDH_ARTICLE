@@ -1,5 +1,5 @@
 import Result from "../../../../../libs/result/result";
-import { PizzaDataAreNotValid } from "../../../errors/pizza.error";
+import { PizzaDataAreNotValid } from "../../errors/pizza.error";
 import { IngredientEntity } from "./ingredient.entity";
 import { PizzaPrice } from "../value-objects/pizza-price.value-object";
 import { generateId } from "../../../../../libs/utils/generate-random-string-id";

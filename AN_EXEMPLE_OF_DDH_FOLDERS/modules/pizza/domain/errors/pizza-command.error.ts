@@ -1,4 +1,4 @@
-import { IngredientEntity } from "../domain/create_pizza/entities/ingredient.entity";
+import { IngredientEntity } from "../create_pizza/entities/ingredient.entity";
 
 export class PizzaCommandDataAreNotValid extends Error{
     static readonly message = "Data are not valid";

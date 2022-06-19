@@ -1,7 +1,7 @@
 import { ICommand } from "@nestjs/cqrs";
 import Result from "../../../../libs/result/result";
 import { ClientAddressNotUnderstood, DeliveryGuyLost } 
-    from "../../errors/pizza-command-delivery.error";
+    from "../errors/pizza-command-delivery.error";
 import { PizzaEntity } from "../create_pizza/entities/pizza.entity";
 import { PizzaCommandAggregate } from "./aggregates/pizza-command.aggregate";
 

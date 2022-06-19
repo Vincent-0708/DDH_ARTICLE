@@ -1,6 +1,6 @@
 import { ICommand } from "@nestjs/cqrs";
 import Result from "../../../libs/result/result";
-import { CanNotSendMessage } from "../errors/sent-message.error";
+import { CanNotSendMessage } from "./errors/sent-message.error";
 
 
 type SendMessageToClientCommandPayload = { clientPhoneNumber: string, message:string};
