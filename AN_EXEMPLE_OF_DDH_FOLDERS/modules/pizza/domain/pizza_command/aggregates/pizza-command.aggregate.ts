@@ -6,7 +6,7 @@ import { PizzaCommandPrice } from "../value-objects/pizza-command-price.value-ob
 
 export type PizzaCommandAggregateAttributes = {
     clientId : string;
-    content :PizzaEntity["id"][];
+    content :PizzaEntity[];
     price: PizzaCommandPrice;
 }
 
@@ -51,7 +51,7 @@ export class PizzaCommandAggregate {
     }
 
     public addPizzaToContent( _pizza:PizzaEntity ):void{
-        // logic to add a pizza to the pizza attribute AND to update the price 
+        // logic to add a pizza to the content attribute AND to update the price 
     }
 
     public getClientId():PizzaCommandAggregateAttributes["clientId"] {
