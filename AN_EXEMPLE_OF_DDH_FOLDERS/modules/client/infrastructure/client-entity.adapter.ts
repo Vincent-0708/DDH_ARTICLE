@@ -8,7 +8,7 @@ import { ClientOrmEntity } from "./client.orm-entity";
 
 
 @Injectable()
-export class ClientRepository implements ClientPort{
+export class ClientEntityAdapter implements ClientPort{
     constructor(
         @InjectRepository( ClientOrmEntity )
         private readonly clientRepository: Repository<ClientOrmEntity>,
