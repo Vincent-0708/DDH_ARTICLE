@@ -4,12 +4,14 @@ import { generateId } from "../../../../libs/utils/generate-random-string-id";
 import { ClientDataAreNotValid } from "../errors/client.errors";
 import { Address } from "../value-objects/address.value-object";
 import { PhoneNumber } from "../value-objects/phone-number.value-object";
+import { FidelityAccountEntity } from "./fidelity-account.entity";
 
 export type ClientEntityAttributes = {
     id: string
     firstName : string;
     phoneNumber : PhoneNumber;
     address : Address; 
+    fidelityAccount: FidelityAccountEntity;
 }
 
 type getAddressReturnType = {
@@ -24,12 +26,14 @@ export class ClientEntity {
     protected firstName : ClientEntityAttributes["firstName"];
     protected phoneNumber: ClientEntityAttributes["phoneNumber"];
     protected address : ClientEntityAttributes["address"];
+    protected fidelityAccount : ClientEntityAttributes["fidelityAccount"];
 
     private constructor( client:ClientEntityAttributes ){
         this.id = client.id;
         this.firstName = client.firstName;
         this.phoneNumber = client.phoneNumber;
         this.address = client.address;
+        this.fidelityAccount = client.fidelityAccount;
     }
 
     public static createClient( clientProps:Omit<ClientEntityAttributes, "id"> ): 
@@ -82,6 +86,9 @@ export class ClientEntity {
 
     public getId():string {
         return this.id.toString();
+    }
+    public getFidelityAccount():FidelityAccountEntity{
+        return this.fidelityAccount;
     }
 
 }

@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, Index, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { FidelityAccountEntity } from "../domain/entities/fidelity-account.entity";
 
 export type ClientOrmEntityAttributes = {
   id:string;
@@ -7,6 +8,8 @@ export type ClientOrmEntityAttributes = {
   postalCode:string;
   street:string;
   streetNumber:string
+  fidelityAccountId:string;
+  fidelityAccount:FidelityAccountEntity;
 }
 
 @Entity( "client" )
@@ -35,6 +38,13 @@ export class ClientOrmEntity{
 
   @Column()
       streetNumber: string;
+
+  @Index()
+  @Column()
+      fidelityAccountId:FidelityAccountEntity["id"];
+
+  @ManyToOne( () => FidelityAccountEntity )
+      fidelityAccount: FidelityAccountEntity;
 
 }
 

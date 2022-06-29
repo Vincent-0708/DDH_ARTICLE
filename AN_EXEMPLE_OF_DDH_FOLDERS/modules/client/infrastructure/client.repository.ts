@@ -17,7 +17,7 @@ export class ClientRepository implements ClientPort{
     public async getClientInformationById( clientId: string ): 
     Promise<ClientEntity> {
         const clientOrmEntity = 
-        await this.clientRepository.findOne( { where: { id: clientId }, } );
+        await this.clientRepository.findOne( { where: { id: clientId }, relations: [ "fidelityAccount" ], } );
 
         if ( !clientOrmEntity ){
             throw new NotFoundException(

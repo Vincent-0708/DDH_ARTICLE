@@ -12,3 +12,5 @@ Files without interest are :
 - phone-number.value-object.ts
 - pizza-price.value-object.ts
 - pizza-command-price.value-object.ts
+- fidelity-account.entity.ts
+- fidelity-point.value-object.ts
