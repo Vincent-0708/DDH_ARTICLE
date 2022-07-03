@@ -7,7 +7,7 @@ import {
 } from "../domain/get-client-information-by-id.query";
 import { CLIENT_CONTROLLER_URLS } from "../../../params/urls/client-controller-urls";
 import { GetClientInformationResponseDto } 
-    from "./dtos/get-client-information.response.dto";
+    from "./dtos/get-client-information.response-dto";
 
 @Controller( CLIENT_CONTROLLER_URLS.BASE_URL )
 export class GetClientInformationController {

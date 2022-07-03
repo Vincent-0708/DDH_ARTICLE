@@ -5,7 +5,7 @@ import { GetClientInformationByIdQuery, GetClientInformationByIdQueryResult }
     from "../domain/get-client-information-by-id.query";
 import { Address } from "../domain/value-objects/address.value-object";
 import { GetClientPhoneNumberAsStringResponseDto } 
-    from "./dtos/get-client-phone-number-as-string.response.dto";
+    from "./dtos/get-client-phone-number-as-string.response-dto";
 
 @Injectable()
 export class GetClientInformationPresenter {
