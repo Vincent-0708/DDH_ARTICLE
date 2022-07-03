@@ -4,7 +4,7 @@ It is supposed to represent some parts of a pizza restaurant with a DDH approach
 
 Warning : this code is not executable. It is just possible implementations for different concepts. That's why several files are almost empty. They just exist to define elements needed elsewhere. 
 
-You may be interested by those files : 
+You may be interested by those files (in AN_EXAMPLE_OF_DDH_FOLDER/modules): 
 - Entities:
   - client.entity.ts
   - pizza.entity.ts
@@ -46,7 +46,7 @@ You may be interested by those files :
 - Presenter:
   - get-client-information.presenter.ts
 
-- Result class:
+- Result class( IN AN_EXAMPLE_OF_DDH_FOLDER/libs/result):
   - result.ts
 
 
