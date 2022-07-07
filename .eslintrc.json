@@ -1,0 +1,34 @@
+{
+    "root": true,
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "rules":{
+        "quotes":["error","double"],
+        "semi":["error","always"],
+        "indent":["error",4],
+        "no-multi-spaces":"error",
+        "keyword-spacing":["error", {"before":true,"after":true}],
+        "key-spacing":["error",{"beforeColon":false,"afterColon":true}],
+        "object-curly-spacing":["error","always"],
+        "array-bracket-spacing":["error","always"],
+        "space-infix-ops": ["error", { "int32Hint": false }],
+        "object-curly-newline":["error",{
+            "ObjectExpression": { "multiline": true},
+            "ObjectPattern": { "multiline": true},
+            "ImportDeclaration": { "multiline": true},
+            "ExportDeclaration": { "multiline": true}
+        }],
+        "space-in-parens":["error","always"],
+        "array-bracket-newline":["error",{"multiline":true}],
+        "comma-spacing":["error",{"before":false,"after":true}],
+        "no-multiple-empty-lines":"error",
+        "no-unused-vars":"off"
+        
+    }
+}

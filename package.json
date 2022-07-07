@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@nestjs/common": "^8.4.7",
+    "@nestjs/cqrs": "^8.0.5",
+    "@nestjs/typeorm": "^8.1.4"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.5",
+    "eslint": "^8.19.0",
+    "eslint-plugin-react": "^7.30.1"
+  }
+}
